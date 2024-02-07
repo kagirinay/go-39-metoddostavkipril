@@ -12,8 +12,8 @@ RUN CGO_ENABLED=0 GOOS=linux GOARCH=amd64 go build ./
 
 FROM debian:stretch
 
-COPY --from=builder /code/module-39 /usr/local/bin/module-39
+COPY --from=builder /code/module39 /usr/local/bin/module39
 
 RUN chmod +x /usr/local/bin/module-39
 
-ENTRYPOINT [ "module-39" ]
+ENTRYPOINT [ "module39" ]

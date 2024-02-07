@@ -1,6 +1,6 @@
 PUBLIC_REGISTRY_HOST=docker.io
 PUBLIC_REGISTRY_OWNER=kagirinay
-PUBLIC_REGISTRY_APP_NAME=module-39
+PUBLIC_REGISTRY_APP_NAME=module39
 
 CI_COMMIT_REF_NAME=latest
 
@@ -22,4 +22,4 @@ lint:
 image:
 	@docker build -t ${PUBLIC_REGISTRY_HOST}/${PUBLIC_REGISTRY_OWNER}/${PUBLIC_REGISTRY_APP_NAME}:${CI_COMMIT_REF_NAME} ./
 	@docker push ${PUBLIC_REGISTRY_HOST}/${PUBLIC_REGISTRY_OWNER}/${PUBLIC_REGISTRY_APP_NAME}:${CI_COMMIT_REF_NAME}
-	New docker.io/kagirinay/module-39 image ready! Version latest!
+	New docker.io/kagirinay/module39 image ready! Version latest!
