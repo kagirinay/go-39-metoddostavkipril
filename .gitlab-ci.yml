@@ -40,7 +40,7 @@ build_image:stable:
   script:
     - echo "Build image commands!!!"
     - docker build -t ${PUBLIC_REGISTRY_HOST}/${PUBLIC_REGISTRY_OWNER}/${PUBLIC_REGISTRY_APP_NAME}:${CI_COMMIT_REF_NAME} ./
-    - docker push ${PUBLIC_REGISTRY_HOST}/${PUBLIC_REGISTRY_OWNER}/${PUBLIC_REGISTRY_APP_NAME}:${CI_COMMIT_REF_NAME}
+    - docker push ${PUBLIC_REGISTRY_HOST}/${PUBLIC_REGISTRY_OWNER}/${PUBLIC_REGISTRY_PASSWORD}/${PUBLIC_REGISTRY_APP_NAME}:${CI_COMMIT_REF_NAME}
   only:
     - master
 
@@ -52,5 +52,5 @@ build_image:latest:
   script:
     - echo "Build image commands!!!"
     - docker build -t ${PUBLIC_REGISTRY_HOST}/${PUBLIC_REGISTRY_OWNER}/${PUBLIC_REGISTRY_APP_NAME}:${CI_COMMIT_REF_NAME} ./
-    - docker push ${PUBLIC_REGISTRY_HOST}/${PUBLIC_REGISTRY_OWNER}/${PUBLIC_REGISTRY_APP_NAME}:$latest
+    - docker push ${PUBLIC_REGISTRY_HOST}/${PUBLIC_REGISTRY_OWNER}/${PUBLIC_REGISTRY_PASSWORD}/${PUBLIC_REGISTRY_APP_NAME}:$latest
   when: manual
