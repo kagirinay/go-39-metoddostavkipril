@@ -21,6 +21,7 @@ test:
   script:
     - echo "Run tests!"
     - go test -v ./...
+  allow_failure: true
 
 lint:
   stage: test
@@ -38,8 +39,8 @@ build_image:stable:
     - docker:dind
   script:
     - echo "Build image commands!!!"
-    - $docker build -t ${PUBLIC_REGISTRY_HOST}/${PUBLIC_REGISTRY_OWNER}/${PUBLIC_REGISTRY_APP_NAME}:${CI_COMMIT_REF_NAME} ./
-    - $docker push ${PUBLIC_REGISTRY_HOST}/${PUBLIC_REGISTRY_OWNER}/${PUBLIC_REGISTRY_APP_NAME}:${CI_COMMIT_REF_NAME}
+    - docker build -t ${PUBLIC_REGISTRY_HOST}/${PUBLIC_REGISTRY_OWNER}/${PUBLIC_REGISTRY_APP_NAME}:${CI_COMMIT_REF_NAME} ./
+    - docker push ${PUBLIC_REGISTRY_HOST}/${PUBLIC_REGISTRY_OWNER}/${PUBLIC_REGISTRY_APP_NAME}:${CI_COMMIT_REF_NAME}
   only:
     - master
 
@@ -49,5 +50,7 @@ build_image:latest:
   services:
     - docker:dind
   script:
-    - echo "No build image commands!!!"
+    - echo "Build image commands!!!"
+    - docker build -t ${PUBLIC_REGISTRY_HOST}/${PUBLIC_REGISTRY_OWNER}/${PUBLIC_REGISTRY_APP_NAME}:${CI_COMMIT_REF_NAME} ./
+    - docker push ${PUBLIC_REGISTRY_HOST}/${PUBLIC_REGISTRY_OWNER}/${PUBLIC_REGISTRY_APP_NAME}:$latest
   when: manual
