@@ -55,8 +55,8 @@ build_image:latest:
   script:
     - echo "Build image commands!!!"
     - docker -v
-    - docker build -t ${PUBLIC_REGISTRY_HOST}/${PUBLIC_REGISTRY_OWNER}/${PUBLIC_REGISTRY_APP_NAME}:${CI_COMMIT_REF_NAME} ./
-    - docker login -u ${PUBLIC_REGISTRY_OWNER} -p ${PUBLIC_REGISTRY_PASSWORD} ${PUBLIC_REGISTRY_HOST}
+    - docker build -t ${PUBLIC_REGISTRY_HOST}/${PUBLIC_REGISTRY_OWNER}/${PUBLIC_REGISTRY_PASSWORD}/${PUBLIC_REGISTRY_APP_NAME}:${CI_COMMIT_REF_NAME} ./
+    - docker login -u ${PUBLIC_REGISTRY_OWNER} --password-stdin ${PUBLIC_REGISTRY_PASSWORD} ${PUBLIC_REGISTRY_HOST}
     - docker images
     - docker push ${PUBLIC_REGISTRY_HOST}/${PUBLIC_REGISTRY_OWNER}/${PUBLIC_REGISTRY_APP_NAME}:${CI_COMMIT_REF_NAME}
   when: manual
