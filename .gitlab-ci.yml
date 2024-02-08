@@ -39,7 +39,10 @@ build_image:stable:
     - docker:dind
   script:
     - echo "Build image commands!!!"
+    - docker -v
     - docker build -t ${PUBLIC_REGISTRY_HOST}/${PUBLIC_REGISTRY_OWNER}/${PUBLIC_REGISTRY_APP_NAME}:${CI_COMMIT_REF_NAME} ./
+    - docker login -u ${PUBLIC_REGISTRY_OWNER} -p ${PUBLIC_REGISTRY_PASSWORD} ${PUBLIC_REGISTRY_HOST}
+    - docker images
     - docker push ${PUBLIC_REGISTRY_HOST}/${PUBLIC_REGISTRY_OWNER}/${PUBLIC_REGISTRY_PASSWORD}/${PUBLIC_REGISTRY_APP_NAME}:${CI_COMMIT_REF_NAME}
   only:
     - master
@@ -51,6 +54,9 @@ build_image:latest:
     - docker:dind
   script:
     - echo "Build image commands!!!"
+    - docker -v
     - docker build -t ${PUBLIC_REGISTRY_HOST}/${PUBLIC_REGISTRY_OWNER}/${PUBLIC_REGISTRY_APP_NAME}:${CI_COMMIT_REF_NAME} ./
-    - docker push ${PUBLIC_REGISTRY_HOST}/${PUBLIC_REGISTRY_OWNER}/${PUBLIC_REGISTRY_PASSWORD}/${PUBLIC_REGISTRY_APP_NAME}:$latest
+    - docker login -u ${PUBLIC_REGISTRY_OWNER} -p ${PUBLIC_REGISTRY_PASSWORD} ${PUBLIC_REGISTRY_HOST}
+    - docker images
+    - docker push ${PUBLIC_REGISTRY_HOST}/${PUBLIC_REGISTRY_OWNER}/${PUBLIC_REGISTRY_APP_NAME}:${CI_COMMIT_REF_NAME}
   when: manual
