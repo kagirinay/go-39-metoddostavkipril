@@ -6,7 +6,7 @@ stages:
 variables:
   PUBLIC_REGISTRY_HOST: docker.io
   PUBLIC_REGISTRY_OWNER: kagirinay
-  PUBLIC_REGISTRY_APP_NAME: module39
+  PUBLIC_REGISTRY_APP_NAME: module-39
   CI_COMMIT_REF_NAME: latest
 
 build_app:
