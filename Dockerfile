@@ -14,6 +14,6 @@ FROM debian:stretch
 
 COPY --from=builder /code/module39 /usr/local/bin/module39
 
-RUN chmod +x /usr/local/bin/module-39
+RUN chmod +x /usr/local/bin/module39
 
 ENTRYPOINT [ "module39" ]
